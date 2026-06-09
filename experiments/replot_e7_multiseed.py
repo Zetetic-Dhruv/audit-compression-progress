@@ -26,7 +26,7 @@ labels = {"naive": "naive", "fresh_subsample": "fresh\nsubsample", "ladder": "la
           "rounded": "rounded", "one_shot": "one-shot"}
 names = [labels.get(x["defense"], x["defense"]) for x in defs]
 gaps = [x["gap_mean"] for x in defs]
-errs = [x["gap_ci95"] for x in defs]
+errs = [x["gap_sd"] for x in defs]
 colz = ["#c0392b" if x["wins"] > 0 else "#2e86c1" for x in defs]
 b1.bar(range(len(defs)), gaps, yerr=errs, capsize=3, color=colz)
 for i, x in enumerate(defs):
@@ -42,7 +42,7 @@ b1.set_title(f"power + defenses ({nseeds} seeds)", fontsize=8.5)
 sc = d["scaling_curve"]
 nn = [x["n"] for x in sc]
 gg = [x["gap_mean"] for x in sc]
-ge = [x["gap_ci95"] for x in sc]
+ge = [x["gap_sd"] for x in sc]
 tt = [x["threshold"] for x in sc]
 b2.errorbar(nn, gg, yerr=ge, fmt="o-", color="#c0392b", capsize=3, label="attacker gap")
 b2.plot(nn, tt, "s--", color="k", lw=1, label=r"$2\Delta_n$")
