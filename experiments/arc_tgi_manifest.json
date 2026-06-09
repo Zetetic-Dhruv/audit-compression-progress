@@ -1,0 +1,302 @@
+{
+  "repo": "simon-arc-lab (ARC-TGI generators, pinned commit d8a2621); set to your local clone path",
+  "n_colors": 11,
+  "pad_token": 10,
+  "grid": 30,
+  "n_learnable_families": 24,
+  "n_distractor_families": 8,
+  "learnable_families": [
+    {
+      "name": "dataset_solve_bool",
+      "generators": [
+        "generate_task_bool_transformation"
+      ],
+      "transformation_ids": [
+        "and",
+        "or",
+        "xor"
+      ]
+    },
+    {
+      "name": "dataset_solve_boundingbox",
+      "generators": [
+        "generate_task_boundingbox_of_lonely_pixels",
+        "generate_task_inner_boundingbox"
+      ],
+      "transformation_ids": [
+        "filled",
+        "hollow",
+        "filled_inner",
+        "hollow_inner",
+        "filled_outer",
+        "hollow_outer",
+        "simple_fill",
+        "swap_background_outer"
+      ]
+    },
+    {
+      "name": "dataset_solve_color",
+      "generators": [
+        "generate_task_replace_color_pairs_with_different_palettes",
+        "generate_task_swap_colors",
+        "generate_task_identify_most_and_least_popular_colors",
+        "generate_task_swap_most_and_least_popular_colors"
+      ],
+      "transformation_ids": [
+        "no_padding",
+        "crop",
+        "padding",
+        "most_popular",
+        "NxM",
+        "least_popular",
+        "same"
+      ]
+    },
+    {
+      "name": "dataset_solve_compress",
+      "generators": [
+        "generate_task_compress_xy"
+      ],
+      "transformation_ids": []
+    },
+    {
+      "name": "dataset_solve_count",
+      "generators": [
+        "generate_task_count_pixels_and_repeat_output_pattern",
+        "generate_task_count_pixels_and_repeat_input_pattern"
+      ],
+      "transformation_ids": [
+        "repeat_x",
+        "repeat_y"
+      ]
+    },
+    {
+      "name": "dataset_solve_cross",
+      "generators": [
+        "generate_task_two_crossing_lines"
+      ],
+      "transformation_ids": []
+    },
+    {
+      "name": "dataset_solve_deform",
+      "generators": [
+        "generate_task_displace_rows_based_on_mask"
+      ],
+      "transformation_ids": []
+    },
+    {
+      "name": "dataset_solve_flip",
+      "generators": [
+        "generate_task"
+      ],
+      "transformation_ids": [
+        "flipx",
+        "flipy",
+        "flipa",
+        "flipb"
+      ]
+    },
+    {
+      "name": "dataset_solve_fractal",
+      "generators": [
+        "generate_task_pattern_to_fractal",
+        "generate_task_fractal_to_pattern"
+      ],
+      "transformation_ids": []
+    },
+    {
+      "name": "dataset_solve_grid",
+      "generators": [
+        "generate_task_extract_content_from_grid"
+      ],
+      "transformation_ids": [
+        "original",
+        "flipx",
+        "flipy",
+        "cw",
+        "ccw",
+        "flipa",
+        "flipb"
+      ]
+    },
+    {
+      "name": "dataset_solve_halfplane",
+      "generators": [
+        "generate_task_halfplane_with_two_pixels",
+        "generate_task_halfplane_with_one_pixel"
+      ],
+      "transformation_ids": []
+    },
+    {
+      "name": "dataset_solve_mass",
+      "generators": [
+        "generate_task_comparing_adjacent_rowcolumn"
+      ],
+      "transformation_ids": [
+        "adjacent_rows",
+        "adjacent_columns"
+      ]
+    },
+    {
+      "name": "dataset_solve_mirror",
+      "generators": [
+        "generate_task_mirror_swap_objects"
+      ],
+      "transformation_ids": []
+    },
+    {
+      "name": "dataset_solve_outline",
+      "generators": [
+        "generate_task_outline_all8"
+      ],
+      "transformation_ids": []
+    },
+    {
+      "name": "dataset_solve_probecolor",
+      "generators": [
+        "generate_task"
+      ],
+      "transformation_ids": []
+    },
+    {
+      "name": "dataset_solve_ray",
+      "generators": [
+        "generate_task_emit_rays_from_lonely_pixels"
+      ],
+      "transformation_ids": []
+    },
+    {
+      "name": "dataset_solve_rectangle",
+      "generators": [
+        "generate_task_with_rectangles"
+      ],
+      "transformation_ids": [
+        "fill_the_hollow_rectangles",
+        "hollow_out_the_filled_rectangles",
+        "mask_of_the_hollow_areas",
+        "mask_outside_the_hollow_rectangles",
+        "mask_outside_the_filled_rectangles"
+      ]
+    },
+    {
+      "name": "dataset_solve_reverse",
+      "generators": [
+        "generate_task_reverse_chunks"
+      ],
+      "transformation_ids": [
+        "leftright",
+        "topbottom"
+      ]
+    },
+    {
+      "name": "dataset_solve_rotate",
+      "generators": [
+        "generate_task"
+      ],
+      "transformation_ids": [
+        "rotate_cw",
+        "rotate_ccw",
+        "rotate_180",
+        "flipa",
+        "flipb",
+        "flipx",
+        "flipy"
+      ]
+    },
+    {
+      "name": "dataset_solve_scale",
+      "generators": [
+        "generate_task"
+      ],
+      "transformation_ids": []
+    },
+    {
+      "name": "dataset_solve_span",
+      "generators": [
+        "generate_task_with_intersecting_spans",
+        "generate_task_with_template_lines"
+      ],
+      "transformation_ids": [
+        "empty_primary_area",
+        "template_primary_area",
+        "template_primary_area_without_border",
+        "colored_primary_area_fill_template_border",
+        "colored_primary_area_extract_horizontal",
+        "output_with_border",
+        "output_without_border",
+        "and",
+        "or",
+        "xor",
+        "sum"
+      ]
+    },
+    {
+      "name": "dataset_solve_symmetry",
+      "generators": [
+        "generate_task_with_input_image_create_output_symmetry_rect",
+        "generate_task_with_input_image_create_output_symmetry_square",
+        "generate_task_with_symmetry_rect_input_image_and_extract_a_particular_tile",
+        "generate_task_with_symmetry_square_input_image_and_extract_a_particular_tile",
+        "generate_task_with_symmetry_line"
+      ],
+      "transformation_ids": []
+    },
+    {
+      "name": "dataset_solve_template",
+      "generators": [
+        "generate_task_with_template_areas"
+      ],
+      "transformation_ids": [
+        "with_insertion_image",
+        "without_insertion_image",
+        "swap_one_to_many",
+        "swap_many_to_one"
+      ]
+    },
+    {
+      "name": "dataset_solve_zindex",
+      "generators": [
+        "generate_task_mask_of_primary_rectangle",
+        "generate_task_mask_of_obscured_rectangle",
+        "generate_task_mask_of_intersection_rectangle",
+        "generate_task_move_obscured_rectangle_to_top"
+      ],
+      "transformation_ids": []
+    }
+  ],
+  "distractor_spec": "input=image_create_random_advanced; output=independent random (unlearnable)",
+  "skipped_modules": [
+    [
+      "dataset_solve_augment.py",
+      "import failed: Exception: This is highly experimental code, and not ready for use. It's worsening the model severely at the moment. I may return to this code later."
+    ],
+    [
+      "dataset_solve_edge.py",
+      "no generate_task* produced valid pairs"
+    ],
+    [
+      "dataset_solve_erosion.py",
+      "no generate_task* produced valid pairs"
+    ],
+    [
+      "dataset_solve_gravity.py",
+      "no generate_task* produced valid pairs"
+    ],
+    [
+      "dataset_solve_half.py",
+      "no generate_task* produced valid pairs"
+    ],
+    [
+      "dataset_solve_mask.py",
+      "no generate_task* produced valid pairs"
+    ],
+    [
+      "dataset_solve_skew.py",
+      "no generate_task* produced valid pairs"
+    ],
+    [
+      "dataset_solve_translate.py",
+      "no generate_task* produced valid pairs"
+    ]
+  ]
+}
