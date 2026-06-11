@@ -1,6 +1,6 @@
 # Audit Compression Progress
 
-Reproducibility artifacts for the preprint **"Signed Compression Progress on a Sealed Audit is Goodhart-Resistant."**
+Reproducibility artifacts for the preprint **"Signed Compression Progress on a Sealed Audit is Goodhart-Resistant"** ([arXiv:2606.11417](https://arxiv.org/abs/2606.11417)).
 
 Signed compression progress measured on a fixed, sealed audit loss telescopes to endpoint audit improvement, giving a zero false-positive budget; for a finite audit panel the cumulative empirical reward is bounded by the true audit improvement plus a `2*Delta_n` deviation budget. This repository hosts the two artifacts behind the paper.
 
@@ -29,6 +29,17 @@ python3 cp_experiments.py c1 --scale full --seed 0      # one experiment, one se
 python3 e7_multiseed.py 20                               # 20-seed E7 power calibration + scaling curve
 ```
 `run_parallel.sh` fans the full battery out over (experiment x seed) shards. `make_results_figures.py` and `replot_e7_multiseed.py` regenerate the figures from the result shards.
+
+## Citation
+
+```bibtex
+@article{mittal2026signed,
+  title   = {Signed Compression Progress on a Sealed Audit is Goodhart-Resistant},
+  author  = {Mittal, Ayush and Gupta, Dhruv},
+  journal = {arXiv preprint arXiv:2606.11417},
+  year    = {2026}
+}
+```
 
 ## License
 

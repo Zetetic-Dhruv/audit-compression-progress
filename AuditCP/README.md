@@ -1,7 +1,7 @@
 # AuditCP — machine-checked core (Lean 4 / Mathlib)
 
 Formal artifact for the preprint **"Signed Compression Progress on a Sealed Audit is
-Goodhart-Resistant."** Self-contained Lean 4 development whose **only build
+Goodhart-Resistant"** ([arXiv:2606.11417](https://arxiv.org/abs/2606.11417)). Self-contained Lean 4 development whose **only build
 dependency is Mathlib**, pinned to an exact commit for reproducibility.
 
 The load-bearing theorems are **fully proved** (no `sorry`). This is verified two ways:
