@@ -1,0 +1,29 @@
+{
+  "noumenal": true,
+  "version": 1,
+  "repo": "Zetetic-Dhruv/audit-compression-progress",
+  "cards": [
+    {
+      "order": 6,
+      "ingredient": "measurement",
+      "title": "Compression Progress",
+      "repo": "Zetetic-Dhruv/audit-compression-progress",
+      "vis": "open",
+      "status": "open",
+      "alsoIn": "",
+      "direction": "A path-independent progress meter: cumulative compression progress along any audit trajectory telescopes to the endpoint difference, so relabelling, splitting, or padding cannot move it.",
+      "note": "",
+      "tbd": false,
+      "witnesses": [
+        {
+          "type": "proof",
+          "cell": "established_result",
+          "code": "theorem cumCP_telescope {ι : Type*}\n    (E : ι → ℝ) (g : ℕ → ι) (T : ℕ) :\n    cumCP E g T = E (g 0) - E (g T)",
+          "source": "audit-compression-progress/AuditCP/Telescope.lean ∷ cumCP_telescope",
+          "file": "AuditCP/AuditCP/Telescope.lean",
+          "name": "cumCP_telescope"
+        }
+      ]
+    }
+  ]
+}
