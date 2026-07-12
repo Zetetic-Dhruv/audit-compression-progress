@@ -24,6 +24,118 @@
           "name": "cumCP_telescope"
         }
       ]
+    },
+    {
+      "order": 9020,
+      "ingredient": "measurement",
+      "title": "Goodhart Resistance",
+      "repo": "Zetetic-Dhruv/audit-compression-progress",
+      "vis": "open",
+      "status": "active",
+      "alsoIn": "",
+      "direction": "Cumulative signed compression progress on an audit loss telescopes to a difference of endpoint values, a potential-function argument that quantifies Goodhart's law as a false-positive budget on an intrinsic reward signal. Whenever the audit loss stays above a floor, cumulative signed progress admits a finite budget. Both statements are machine-checked in Lean 4.",
+      "note": "",
+      "tbd": false,
+      "witnesses": [
+        {
+          "type": "proof",
+          "cell": "novel_discovery",
+          "n": "arg.1",
+          "claim": "Telescoping identity: signed audit compression progress is exactly Goodhart-resistant.",
+          "code": "theorem cumCP_telescope {ι : Type*} (E : ι → ℝ) (g : ℕ → ι) (T : ℕ) :\n    cumCP E g T = E (g 0) - E (g T)",
+          "source": "verifiable_RSI/audit-compression-progress/AuditCP/AuditCP/Telescope.lean ∷ cumCP_telescope",
+          "file": "AuditCP/AuditCP/Telescope.lean",
+          "name": "cumCP_telescope"
+        },
+        {
+          "type": "proof",
+          "cell": "supporting_argument",
+          "n": "arg.2",
+          "claim": "Finite budget: cumulative signed progress is bounded whenever the audit loss stays above a floor.",
+          "code": "theorem cumCP_le_of_lb {ι : Type*} (E : ι → ℝ) (g : ℕ → ι) (T : ℕ) {Emin : ℝ}\n    (hlb : Emin ≤ E (g T)) : cumCP E g T ≤ E (g 0) - Emin",
+          "source": "verifiable_RSI/audit-compression-progress/AuditCP/AuditCP/Telescope.lean ∷ cumCP_le_of_lb",
+          "file": "AuditCP/AuditCP/Telescope.lean",
+          "name": "cumCP_le_of_lb"
+        }
+      ]
+    },
+    {
+      "order": 9030,
+      "ingredient": "measurement",
+      "title": "Finite Audit Panels",
+      "repo": "Zetetic-Dhruv/audit-compression-progress",
+      "vis": "open",
+      "status": "active",
+      "alsoIn": "",
+      "direction": "When the audit is scored on a finite panel with uniform deviation Delta between empirical and true losses, cumulative progress on the empirical audit exceeds true progress by at most 2*Delta. The budget is horizon-free by endpoint reduction, placing the result in the setting of adaptive data analysis and reusable-holdout overfitting.",
+      "note": "The theorem takes the uniform deviation bound as a hypothesis; for finite panels it is supplied by finite-class concentration via Hoeffding's inequality and a union bound.",
+      "tbd": false,
+      "witnesses": [
+        {
+          "type": "proof",
+          "cell": "novel_discovery",
+          "n": "arg.1",
+          "claim": "Finite-panel deviation budget 2*Delta is horizon-free by endpoint reduction.",
+          "code": "theorem finite_audit_goodhart {ι : Type*} {F : Set ι} {Ehat E : ι → ℝ} {Δ : ℝ}\n    (hUD : UniformDev F Ehat E Δ) {g : ℕ → ι} (hg : Admissible g F) (T : ℕ) :\n    cumCP Ehat g T ≤ cumCP E g T + 2 * Δ",
+          "source": "verifiable_RSI/audit-compression-progress/AuditCP/AuditCP/FiniteAudit.lean ∷ finite_audit_goodhart",
+          "file": "AuditCP/AuditCP/FiniteAudit.lean",
+          "name": "finite_audit_goodhart"
+        }
+      ]
+    },
+    {
+      "order": 9040,
+      "ingredient": "measurement",
+      "title": "Entropy Floors",
+      "repo": "Zetetic-Dhruv/audit-compression-progress",
+      "vis": "open",
+      "status": "active",
+      "alsoIn": "",
+      "direction": "Log-loss audit is bounded below by the entropy of the data: the cross-entropy decomposition H(Q,P) = H(Q) + KL(Q||P) and Gibbs' inequality yield H(Q) <= H(Q,P), so an incompressible noise component pays only a finite audit-progress budget. The conditional version bounds compression progress on noisy components by the initial excess over the conditional entropy H(Y|X); the floor is derived rather than assumed, with the composition machine-checked end to end. This bears on the noisy-TV problem in curiosity-driven intrinsic motivation.",
+      "note": "",
+      "tbd": false,
+      "witnesses": [
+        {
+          "type": "proof",
+          "cell": "novel_discovery",
+          "n": "arg.1",
+          "claim": "Conditional entropy floor: progress on noisy components is bounded by the initial excess over H(Y|X).",
+          "code": "theorem cond_entropy_floor_budget_crossEntropy (μ : FinitePMF X) (Q : X → FinitePMF H)\n    (P : ι → X → FinitePMF H) [hP : ∀ θ, ∀ x, HasPositivePrior (P θ x)] (g : ℕ → ι) (T : ℕ) :\n    cumCP (fun θ => condCrossEntropyFinitePMF μ Q (P θ)) g T\n      ≤ condCrossEntropyFinitePMF μ Q (P (g 0)) - condEntropyFinitePMF μ Q",
+          "source": "verifiable_RSI/audit-compression-progress/AuditCP/AuditCP/EntropyFloor.lean ∷ cond_entropy_floor_budget_crossEntropy",
+          "file": "AuditCP/AuditCP/EntropyFloor.lean",
+          "name": "cond_entropy_floor_budget_crossEntropy"
+        },
+        {
+          "type": "proof",
+          "cell": "established_result",
+          "n": "arg.2",
+          "claim": "Entropy floor H(Q) <= H(Q,P): log-loss audit is bounded below by data entropy.",
+          "code": "theorem entropy_le_crossEntropyFinitePMF {H : Type*} [Fintype H]\n    (Q P : FinitePMF H) [HasPositivePrior P] :\n    entropyFinitePMF Q ≤ crossEntropyFinitePMF Q P",
+          "source": "verifiable_RSI/audit-compression-progress/AuditCP/AuditCP/EntropyFloor.lean ∷ entropy_le_crossEntropyFinitePMF",
+          "file": "AuditCP/AuditCP/EntropyFloor.lean",
+          "name": "entropy_le_crossEntropyFinitePMF"
+        },
+        {
+          "type": "proof",
+          "cell": "established_result",
+          "n": "arg.3",
+          "claim": "Cross-entropy decomposition H(Q,P) = H(Q) + KL(Q||P), mechanized for finite PMFs.",
+          "code": "theorem crossEntropyFinitePMF_eq_entropy_add_kl {H : Type*} [Fintype H]\n    (Q P : FinitePMF H) [HasPositivePrior P] :\n    crossEntropyFinitePMF Q P = entropyFinitePMF Q + klDivFinitePMF Q P",
+          "source": "verifiable_RSI/audit-compression-progress/AuditCP/AuditCP/EntropyFloor.lean ∷ crossEntropyFinitePMF_eq_entropy_add_kl",
+          "file": "AuditCP/AuditCP/EntropyFloor.lean",
+          "name": "crossEntropyFinitePMF_eq_entropy_add_kl"
+        },
+        {
+          "type": "proof",
+          "cell": "established_result",
+          "n": "arg.4",
+          "claim": "Gibbs inequality: KL divergence between finite PMFs is non-negative.",
+          "code": "theorem klDivFinitePMF_nonneg {H : Type*} [Fintype H] (Q P : FinitePMF H)\n    [HasPositivePrior P] : 0 ≤ klDivFinitePMF Q P",
+          "source": "verifiable_RSI/audit-compression-progress/AuditCP/AuditCP/EntropyFloor.lean ∷ klDivFinitePMF_nonneg",
+          "file": "AuditCP/AuditCP/EntropyFloor.lean",
+          "name": "klDivFinitePMF_nonneg"
+        }
+      ]
     }
   ]
 }
